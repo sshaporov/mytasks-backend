@@ -2,6 +2,7 @@
   "name": "mytasks-backend",
   "version": "1.0.0",
   "scripts": {
+    "start": "tsc && set PORT=7542 && node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -14,6 +15,8 @@
     "@types/body-parser": "^1.19.0",
     "@types/cors": "^2.8.9",
     "@types/express": "^4.17.9",
-    "@types/mongoose": "^5.10.3"
+    "@types/mongoose": "^5.10.3",
+    "nodemon": "^2.0.6",
+    "typescript": "^4.1.3"
   }
 }
