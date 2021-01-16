@@ -1,0 +1,4 @@
+{
+  "port": 3010,
+  "mongoUri": "mongodb+srv://admin:Passw0rd@cluster0.ahetv.mongodb.net/app?retryWrites=true&w=majority"
+}
