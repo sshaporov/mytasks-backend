@@ -33,11 +33,13 @@
   "homepage": "https://github.com/sshaporov/mytasks-backend#readme",
   "dependencies": {
     "config": "^3.3.3",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.11.12"
   },
   "devDependencies": {
     "@types/concurrently": "^5.2.1",
+    "@types/cors": "^2.8.9",
     "@types/express": "^4.17.11",
     "@types/mongoose": "^5.10.3",
     "@types/node": "^14.14.20",

@@ -1,10 +1,22 @@
-import {mongo} from 'mongoose';
-
+import cors = require("cors")
 const config = require('config')
 const express = require('express')
 const mongoose = require('mongoose')
 
 const app = express()
+
+// const whitelist = ['http://localhost:3000', 'http://example2.com'];
+const corsOptions = {
+  credentials: true,
+  origin: (origin, callback) => {
+    // if(whitelist.includes(origin || ""))
+    //     return callback(null, true)
+    //
+    // callback(new Error('Not allowed by CORS'));
+    console.log("origin: ", origin);
+    callback(null, true); // everyone is allowed
+  }
+};
 
 // подключаемся к базе данных Мангус (оборачиваем в функцию чтобы использовать асинк/авет, а не обрабатывать промис)
 async function start() {
@@ -25,7 +37,13 @@ start()
 const PORT = config.get('port') || 3010
 
 app.get("/", (req, res) => {
+  console.log('work route "/"')
   res.send("<h1>1</h1>")
+})
+
+app.get("/cards", cors(corsOptions), (req, res) => {
+  console.log('work route "/cards"')
+  res.send({cardsId: "test card id"})
 })
 
 app.listen(PORT, () => {
