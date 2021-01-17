@@ -1,25 +1,24 @@
 import { cardsController } from './cardsController'
+import * as http from 'http';
+import * as config from 'config';
 
-// const cors = require("cors")
-const config = require('config')
-const express = require('express')
-const http = require('http')
-const mongoose = require('mongoose')
+// const express = require('express')
+// const mongoose = require('mongoose')
 
 //const app = express()
 
 // const whitelist = ['http://localhost:3000', 'http://example2.com'];
-const corsOptions = {
-  credentials: true,
-  origin: (origin, callback) => {
-    // if(whitelist.includes(origin || ""))
-    //     return callback(null, true)
-    //
-    // callback(new Error('Not allowed by CORS'));
-    //console.log("origin: ", origin);
-    callback(null, true); // everyone is allowed
-  }
-}
+// const corsOptions = {
+//   credentials: true,
+//   origin: (origin, callback) => {
+//     // if(whitelist.includes(origin || ""))
+//     //     return callback(null, true)
+//     //
+//     // callback(new Error('Not allowed by CORS'));
+//     //console.log("origin: ", origin);
+//     callback(null, true); // everyone is allowed
+//   }
+// }
 
 // подключаемся к базе данных Мангус (оборачиваем в функцию чтобы использовать асинк/авет, а не обрабатывать промис)
 // async function start() {
