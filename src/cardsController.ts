@@ -1,12 +1,18 @@
 import { getCards, addCard } from './repository'
 
-export const cardsController = (req, res) => {
-  if (req.method === 'POST') {
-    addCard('Test card!')
-    res.write(JSON.stringify('server - card was added'))
-  }
+export const cardsController = async (req, res) => {
 
   if (req.method === 'GET') {
-    res.write(JSON.stringify(getCards()))
+    // action
+    let cards = await getCards()
+      res.write(cards)
+      res.end()
+  }
+
+  if (req.method === 'POST') {
+    // action
+    // addCard('Test card!')
+    // res.write(JSON.stringify('server - card was added'))
+    // res.end()
   }
 }

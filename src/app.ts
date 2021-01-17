@@ -57,13 +57,12 @@ const server = http.createServer((req, res) => {
   if (cors(req, res)) return
 
   switch (req.url) {
-    case '/cards': cardsController(req, res)
+    case '/cards':
+      cardsController(req, res)
       break
     default:
       res.write('PAGE NOT FOUND')
   }
-
-  res.end()
 })
 
 // app.get("/", (req, res) => {

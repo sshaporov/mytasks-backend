@@ -1,13 +1,15 @@
-// данные для фронта
-let cards = [
-  { id: '1', title: 'What to lear' },
-  { id: '2', title: 'Travel tasks' },
-]
+const fs = require('fs')
 
 export const getCards = () => {
-  return cards
+
+  // возвращаем промис а внутри промиса стрелочную функцию которую обещаю выполнить
+  return new Promise((resolve,reject) => {
+    fs.readFile("./src/cards.json", function (err, buf) {
+      resolve(buf.toString())
+    })
+  })
 }
 
 export const addCard = (cardTitle: string) => {
-    cards.push({ id:'3', title: cardTitle })
+    //cards.push({ id:'3', title: cardTitle })
 }
