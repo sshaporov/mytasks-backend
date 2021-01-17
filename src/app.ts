@@ -1,7 +1,8 @@
-import cors = require("cors")
+const cors = require("cors")
 const config = require('config')
 const express = require('express')
 const mongoose = require('mongoose')
+import {getCards, addCard} from './repository'
 
 const app = express()
 
@@ -19,36 +20,34 @@ const corsOptions = {
 };
 
 // подключаемся к базе данных Мангус (оборачиваем в функцию чтобы использовать асинк/авет, а не обрабатывать промис)
-// async function start() {
-//   try {
-//     // функция возвращет промис
-//     await mongoose.connect(config.get('mongoUri'), {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//       useCreateIndex: true,
-//     })
-//   } catch (error) {
-//     console.log('Server error', error)
-//     process.exit(1)
-//   }
-// }
-// start()
+async function start() {
+  try {
+    // функция возвращет промис
+    await mongoose.connect(config.get('mongoUri'), {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    })
+  } catch (error) {
+    console.log('Server error', error)
+    process.exit(1)
+  }
+}
+start()
 
 const PORT = config.get('port') || 3010
 
 app.get("/", (req, res) => {
-  console.log('work route "/"')
   res.send("<h1>1</h1>")
 })
 
-
-const cards = [
-  {id: '1', title: "What to lear"},
-  {id: '2', title: "Travel tasks"},
-]
 app.get("/cards", cors(corsOptions), (req, res) => {
-  console.log('work route "/cards"')
-  res.send(cards)
+  res.send(getCards())
+})
+
+app.post("/cards", cors(corsOptions), (req, res) => {
+  addCard('Test title card')
+  res.send('server - card created successfully')
 })
 
 app.listen(PORT, () => {
