@@ -38,6 +38,11 @@ import * as config from 'config';
 
 const PORT = config.get('port') || 3010
 
+// отлавливание глобальных ошибок
+process.on('unhandledRejection', (reason, p) => {
+  console.log('server - global error: ', reason, p)
+})
+
 let cors = (req, res) => {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*')
