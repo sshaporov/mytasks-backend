@@ -1,24 +1,32 @@
-import { cardsController } from './cardsController'
-import * as http from 'http';
-import * as config from 'config';
+import * as config from 'config'
+import * as express from 'express'
+import {addCard, getCards} from './repository'
+import * as cors from 'cors'
 
-// const express = require('express')
 // const mongoose = require('mongoose')
 
-//const app = express()
+const app = express()
+const PORT = config.get('port') || 3010
 
-// const whitelist = ['http://localhost:3000', 'http://example2.com'];
-// const corsOptions = {
-//   credentials: true,
-//   origin: (origin, callback) => {
-//     // if(whitelist.includes(origin || ""))
-//     //     return callback(null, true)
-//     //
-//     // callback(new Error('Not allowed by CORS'));
-//     //console.log("origin: ", origin);
-//     callback(null, true); // everyone is allowed
-//   }
-// }
+app.use(cors())
+
+app.get("/cards", async (req, res) => {
+  let cards = await getCards()
+  res.send(JSON.stringify(cards))
+})
+
+app.post("/cards", async (req, res) => {
+  await addCard('Test card!')
+  res.send(JSON.stringify({success: true}))
+})
+
+app.use((req, res) => {
+  res.send(404)
+})
+
+app.listen(PORT, () => {
+  console.log(`Server is running in http://localhost:${PORT}`)
+})
 
 // подключаемся к базе данных Мангус (оборачиваем в функцию чтобы использовать асинк/авет, а не обрабатывать промис)
 // async function start() {
@@ -35,57 +43,3 @@ import * as config from 'config';
 //   }
 // }
 // start()
-
-const PORT = config.get('port') || 3010
-
-// отлавливание глобальных ошибок
-process.on('unhandledRejection', (reason, p) => {
-  console.log('server - global error: ', reason, p)
-})
-
-let cors = (req, res) => {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Request-Method', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET')
-  res.setHeader('Access-Control-Allow-Headers', '*')
-  if ( req.method === 'OPTIONS' ) {
-    res.writeHead(200);
-    res.end()
-    return true
-  }
-  return false
-}
-
-const server = http.createServer((req, res) => {
-  if (cors(req, res)) return
-
-  switch (req.url) {
-    case '/cards':
-      cardsController(req, res)
-      break
-    default:
-      res.write('PAGE NOT FOUND')
-  }
-})
-
-// app.get("/", (req, res) => {
-//   res.send("<h1>1</h1>")
-// })
-//
-// app.get("/cards", cors(corsOptions), (req, res) => {
-//   res.send(getCards())
-// })
-//
-// app.post("/cards", cors(corsOptions), (req, res) => {
-//   addCard('Test title card')
-//   res.send('server - card created successfully')
-// })
-//
-// app.listen(PORT, () => {
-//   console.log(`Server is running in http://localhost:${PORT}`)
-// })
-
-server.listen(PORT, () => {
-  console.log(`Server is running in http://localhost:${PORT}`)
-})
