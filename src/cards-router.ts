@@ -11,8 +11,12 @@ cards.get('/', async (req, res) => {
 cards.get('/:id', async (req, res) => {
   const cardId = req.params.id
   let cards: any = await getCards()
-  const card = cards.filter(card => card.id === cardId)
-  res.send(card)
+  const card = cards.find(card => card.id === cardId)
+  if(card) {
+    res.send(card)
+  } else {
+    res.send(404)
+  }
 })
 
 cards.post('/', async (req, res) => {
