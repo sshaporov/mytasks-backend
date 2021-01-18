@@ -1,24 +1,15 @@
 import * as config from 'config'
 import * as express from 'express'
-import {addCard, getCards} from './repository'
 import * as cors from 'cors'
+import cards from './cards-router'
 
-// const mongoose = require('mongoose')
+const PORT = config.get('port') || 3010
 
 const app = express()
-const PORT = config.get('port') || 3010
 
 app.use(cors())
 
-app.get("/cards", async (req, res) => {
-  let cards = await getCards()
-  res.send(JSON.stringify(cards))
-})
-
-app.post("/cards", async (req, res) => {
-  await addCard('Test card!')
-  res.send(JSON.stringify({success: true}))
-})
+app.use('/cards', cards)
 
 app.use((req, res) => {
   res.send(404)
