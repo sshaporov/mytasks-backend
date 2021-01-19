@@ -14,12 +14,16 @@ export const getCards = () => {
 }
 
 export const removeCard = (cardId: string) => {
-  return Card.deleteOne({_id: cardId})
+  return Card.deleteOne({ _id: cardId} )
+}
+
+export const changeCardTitle = (cardId: string, newCardTitle: string) => {
+  return Card.updateOne({ _id: cardId }, { $set: { title: newCardTitle } })
 }
 
 export const addCard = async (cardTitle: string) => {
   // создаем кароточку на основе класса и подставляем данные
-  const card1 = new Card({title: cardTitle})
+  const card1 = new Card({ title: cardTitle })
 
   // записываем карточку в БД
   return card1.save().then()
