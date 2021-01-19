@@ -1,5 +1,6 @@
 import {readJsonFromFile, writeJsonToFile} from './fs-utils'
 import * as mongoose from 'mongoose'
+import {Types} from 'mongoose'
 
 // создаем схему (набор правил)
 const cardsSchema = new mongoose.Schema({
@@ -9,8 +10,11 @@ const cardsSchema = new mongoose.Schema({
 const Card = mongoose.model('Cards', cardsSchema)
 
 export const getCards = () => {
-  // return readJsonFromFile('cards.json')
   return Card.find()
+}
+
+export const removeCard = (cardId: string) => {
+  return Card.deleteOne({_id: cardId})
 }
 
 export const addCard = async (cardTitle: string) => {
@@ -19,8 +23,6 @@ export const addCard = async (cardTitle: string) => {
 
   // записываем карточку в БД
   return card1.save().then()
-
-  // let cards: any = await getCards()
-  // cards.push({ id:'3', title: cardTitle })
-  // return writeJsonToFile('cards.json', cards)
 }
+
+

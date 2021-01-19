@@ -1,5 +1,5 @@
 import * as express from 'express'
-import {addCard, getCards} from './repository'
+import {addCard, getCards, removeCard} from './repository'
 
 const cards = express.Router()
 
@@ -8,15 +8,9 @@ cards.get('/', async (req, res) => {
   res.send(cards)
 })
 
-cards.get('/:id', async (req, res) => {
-  const cardId = req.params.id
-  let cards: any = await getCards()
-  const card = cards.find(card => card.id === cardId)
-  if(card) {
-    res.send(card)
-  } else {
-    res.send(404)
-  }
+cards.delete('/:id', async (req, res) => {
+  await removeCard(req.params.id)
+  res.send({success: true})
 })
 
 cards.post('/', async (req, res) => {
