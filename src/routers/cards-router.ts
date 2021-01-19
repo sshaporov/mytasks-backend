@@ -1,5 +1,6 @@
 import * as express from 'express'
 import { addCard, changeCardTitle, getCards, removeCard } from '../repository/cards-repository'
+import {addTask} from '../repository/task-repository';
 
 const cards = express.Router()
 
@@ -20,6 +21,11 @@ cards.post('/', async (req, res) => {
 
 cards.put('/:id', async (req, res) => {
   await changeCardTitle(req.params.id, req.body.title)
+  res.send({ success: true })
+})
+
+cards.post('/tasks', async (req, res) => {
+  await addTask(req.body.cardId, req.body.title)
   res.send({ success: true })
 })
 
