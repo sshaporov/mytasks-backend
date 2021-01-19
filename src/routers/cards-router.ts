@@ -1,5 +1,5 @@
 import * as express from 'express'
-import { addCard, changeCardTitle, getCards, removeCard } from './repository'
+import { addCard, changeCardTitle, getCards, removeCard } from '../repository/cards-repository'
 
 const cards = express.Router()
 

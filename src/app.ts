@@ -1,7 +1,7 @@
 import * as config from 'config'
 import * as express from 'express'
 import * as cors from 'cors'
-import cards from './cards-router'
+import cards from './routers/cards-router'
 import * as bodyParser from 'body-parser'
 import * as mongoose from 'mongoose'
 
