@@ -20,7 +20,7 @@ cards.get('/:id', async (req, res) => {
 })
 
 cards.post('/', async (req, res) => {
-  await addCard('Test card!')
+  await addCard(req.body.title)
   res.send({success: true})
 })
 
