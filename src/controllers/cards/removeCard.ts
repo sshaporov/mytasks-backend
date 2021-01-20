@@ -1,10 +1,10 @@
 import { Request, Response } from 'express'
 import Card from '../../models/cards-model'
 
-export const getCards = async (req: Request, res: Response) => {
-  Card.find()
-    .then((cards) => {
-      res.status(201).send(cards)
+export const removeCard = async (req: Request, res: Response) => {
+  Card.findOneAndDelete({ _id: req.params.cardId })
+    .then(() => {
+      res.status(200).send()
     })
     .catch(() => {
       // дописать текст ошибки

@@ -6,4 +6,8 @@ export const addCard = async (req: Request, res: Response) => {
     .then((newCard) => {
       res.status(201).send({ item: newCard })
     })
+    .catch(() => {
+      // дописать текст ошибки
+      res.status(400)
+    })
 }
