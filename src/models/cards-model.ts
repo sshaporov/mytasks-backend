@@ -1,13 +1,13 @@
-import {Schema, Document} from 'mongoose'
+import { Schema, Document } from 'mongoose'
 import * as mongoose from 'mongoose'
 
-export interface ICards extends Document {
+export interface ICard extends Document {
   _id: mongoose.Types.ObjectId
   title: string
 }
 
 // создаем класс на основе которого будет создавать объекты соотвествующие этой схеме
-const Cards: Schema = new Schema(
+const Card: Schema = new Schema(
   {
     title: {
       type: String,
@@ -16,4 +16,4 @@ const Cards: Schema = new Schema(
   },
 )
 
-export default mongoose.model<ICards>('Card', Cards);
+export default mongoose.model<ICard>('Cards', Card);
