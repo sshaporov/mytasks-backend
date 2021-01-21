@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import Card from '../../models/cards-model'
 
 export const changeCardTitle = async (req: Request, res: Response) => {
-  Card.findByIdAndUpdate(req.params.cardId, { title: req.body.title } )
+  Card.findByIdAndUpdate(req.params.cardId, { title: req.body.title }, {new: true} )
     .then((updatedCard) => {
       res.status(200).send({ item: updatedCard })
     })
