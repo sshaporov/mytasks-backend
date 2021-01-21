@@ -4,7 +4,7 @@ import Card from '../../models/cards-model'
 export const getCards = async (req: Request, res: Response) => {
   Card.find()
     .then((cards) => {
-      res.status(201).send(cards)
+      res.status(200).send(cards)
     })
     .catch(() => {
       // дописать текст ошибки
