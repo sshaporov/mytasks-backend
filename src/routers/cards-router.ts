@@ -6,6 +6,7 @@ import { removeCard } from '../controllers/cards/removeCard'
 import { getTasks } from '../controllers/tasks/getTasks'
 import { addTask } from '../controllers/tasks/addTask'
 import {changeTask} from '../controllers/tasks/changeTask'
+import {removeTask} from '../controllers/tasks/removeTask'
 
 const cards = express.Router()
 
@@ -16,10 +17,6 @@ cards.delete('/:cardId', (req, res) => removeCard(req, res))
 cards.get('/:cardId/tasks', (req, res) => getTasks(req, res))
 cards.post('/:cardId/tasks', (req, res) => addTask(req, res))
 cards.put('/:cardId/tasks/:taskId', (req, res) => changeTask(req, res))
-
-// cards.post('/tasks/:id', async (req, res) => {
-//   await removeTask(req.params.id)
-//   res.send({ success: true })
-// })
+cards.delete('/:cardId/tasks/:taskId', (req, res) => removeTask(req, res))
 
 export default cards
