@@ -4,7 +4,7 @@
   "description": "mern",
   "main": "index.js",
   "scripts": {
-    "start": "node --inspect=5858 -r ts-node/register src/app.ts",
+    "start": "node --inspect=5858 -r ts-node/register src/index.ts",
     "start:watch": "nodemon",
     "build": "tsc"
   },
@@ -34,7 +34,6 @@
   "dependencies": {
     "@types/body-parser": "^1.19.0",
     "body-parser": "^1.19.0",
-    "config": "^3.3.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.11.12"

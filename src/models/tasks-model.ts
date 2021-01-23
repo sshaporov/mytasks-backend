@@ -25,4 +25,5 @@ const Task: Schema = new Schema(
   },
 )
 
+// первый аргумент 'Tasks' - уникальное имя коллекции, второй аргумент Task - схема, которая используется для создания модели
 export default mongoose.model<ITask>('Tasks', Task);

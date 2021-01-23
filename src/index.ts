@@ -1,27 +1,16 @@
-import * as config from 'config'
 import * as express from 'express'
 import * as cors from 'cors'
 import cards from './routers/cards-router'
 import * as bodyParser from 'body-parser'
 import * as mongoose from 'mongoose'
-
-const PORT = config.get('port') || 3010
+import {MONGO_URI, PORT} from './config'
 
 const app = express()
 
 app.use(cors())
-
-// parse application/json
 app.use(bodyParser.json())
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-
+app.use(bodyParser.urlencoded({extended: false}))
 app.use('/cards', cards)
-
-
-app.use((req, res) => {
-  res.send(404)
-})
 
 app.listen(PORT, () => {
   console.log(`Server is running in http://localhost:${PORT}`)
@@ -31,7 +20,7 @@ app.listen(PORT, () => {
 async function start() {
   try {
     // функция возвращет промис
-    await mongoose.connect(config.get('mongoUri'), {
+    await mongoose.connect(MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,

@@ -2,11 +2,11 @@ import { Request, Response } from 'express'
 import Task from '../../models/tasks-model'
 
 export const addTask = async (req: Request, res: Response) => {
-  Task.create({ card_id: req.params.cardId, title: req.body.title, checked: false })
+  Task.create({card_id: req.params.cardId, title: req.body.title, checked: false})
     .then((newTask) => {
-      res.status(201).json({ item: newTask })
+      res.status(201).json({item: newTask})
     })
-    .catch(() => {
-      res.status(500).json({"message": "Something went wrong!"})
+    .catch(err => {
+      res.status(500).json(err)
     })
 }

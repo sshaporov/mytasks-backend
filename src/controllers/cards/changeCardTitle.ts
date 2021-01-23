@@ -2,12 +2,12 @@ import { Request, Response } from 'express'
 import Card from '../../models/cards-model'
 
 export const changeCardTitle = async (req: Request, res: Response) => {
-  Card.findByIdAndUpdate(req.params.cardId, { title: req.body.title }, {new: true} )
+  Card.findByIdAndUpdate(req.params.cardId, {title: req.body.title}, {new: true})
     .exec()
-    .then((updatedCard) => {
+    .then(updatedCard => {
       res.status(200).json({ item: updatedCard })
     })
-    .catch(() => {
-      res.status(500).json({"message": "Something went wrong!"})
+    .catch(err => {
+      res.status(500).json(err)
     })
 }
