@@ -5,10 +5,9 @@ export const changeCardTitle = async (req: Request, res: Response) => {
   Card.findByIdAndUpdate(req.params.cardId, { title: req.body.title }, {new: true} )
     .exec()
     .then((updatedCard) => {
-      res.status(200).send({ item: updatedCard })
+      res.status(200).json({ item: updatedCard })
     })
     .catch(() => {
-      // дописать текст ошибки
-      res.status(400)
+      res.status(500).json({"message": "Something went wrong!"})
     })
 }

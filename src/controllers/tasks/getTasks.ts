@@ -5,10 +5,10 @@ export const getTasks = async (req: Request, res: Response) => {
   Task.find({ card_id: req.params.cardId })
     .exec()
     .then((tasks) => {
-      res.status(201).send(tasks)
+      res.status(201).json(tasks)
     })
     .catch(() => {
-      // дописать текст ошибки
-      res.status(400)
+      res.status(500).json({"message": "Something went wrong!"})
+
     })
 }

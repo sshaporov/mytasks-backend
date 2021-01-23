@@ -5,10 +5,9 @@ export const getCards = async (req: Request, res: Response) => {
   Card.find()
     .exec()
     .then((cards) => {
-      res.status(200).send(cards)
+      res.status(200).json(cards)
     })
     .catch(() => {
-      // дописать текст ошибки
-      res.status(400)
+      res.status(500).json({"message": "Something went wrong!"})
     })
 }

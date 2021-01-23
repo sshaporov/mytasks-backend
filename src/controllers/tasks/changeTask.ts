@@ -6,9 +6,9 @@ export const changeTask = async (req: Request, res: Response) => {
   Task.findByIdAndUpdate(req.params.taskId, req.body, {new: true})
     .exec()
     .then((updatedTask) => {
-      res.status(200).send({item: updatedTask})
+      res.status(200).json({item: updatedTask})
     })
     .catch(() => {
-      res.status(400)
+      res.status(500).json({"message": "Something went wrong!"})
     })
 }

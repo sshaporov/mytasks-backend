@@ -4,10 +4,9 @@ import Card from '../../models/cards-model'
 export const addCard = async (req: Request, res: Response) => {
   Card.create({ title: req.body.title })
     .then((newCard) => {
-      res.status(201).send({ item: newCard })
+      res.status(201).json({ item: newCard })
     })
     .catch(() => {
-      // дописать текст ошибки
-      res.status(400)
+      res.status(500).json({"message": "Something went wrong!"})
     })
 }
