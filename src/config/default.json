@@ -1,4 +1,0 @@
-{
-  "port": 3010,
-  "mongoUri": "mongodb+srv://admin:Passw0rd@cluster0.ahetv.mongodb.net/myTasks?retryWrites=true&w=majority"
-}
