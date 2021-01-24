@@ -1,5 +1,5 @@
 import {Request, Response} from 'express'
-import Task from '../../models/tasks-model'
+import Task from '../../models/task-model'
 
 export const removeTask = async (req: Request, res: Response) => {
   Task.findOneAndDelete({ _id: req.params.taskId, card_id: req.params.cardId })

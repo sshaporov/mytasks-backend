@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import Task from '../../models/tasks-model'
+import Task from '../../models/task-model'
 
 export const getTasks = async (req: Request, res: Response) => {
   Task.find({card_id: req.params.cardId})

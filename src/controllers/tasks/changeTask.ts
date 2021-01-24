@@ -1,5 +1,5 @@
 import {Request, Response} from 'express'
-import Task from '../../models/tasks-model'
+import Task from '../../models/task-model'
 
 export const changeTask = async (req: Request, res: Response) => {
   // нужно проверять пришедшие свойства на соответствие типов, чтоб в title: string, checked: boolean

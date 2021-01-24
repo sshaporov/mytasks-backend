@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import Card from '../../models/cards-model'
+import Card from '../../models/card-model'
 
 export const changeCardTitle = async (req: Request, res: Response) => {
   Card.findByIdAndUpdate(req.params.cardId, {title: req.body.title}, {new: true})
