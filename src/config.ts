@@ -5,3 +5,4 @@ export const MONGOOSE_CONNECT_OPTIONS = {
   useUnifiedTopology: true,
   useCreateIndex: true,
 }
+export const JWT_SECRET = 'MyTasks app'
