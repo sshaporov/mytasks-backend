@@ -20,7 +20,6 @@ mongoose.connect(MONGO_URI, MONGOOSE_CONNECT_OPTIONS)
   }))
   .catch(err => {
     console.log('Mongo server error', err)
-    //process.exit(1)
   })
 
 
