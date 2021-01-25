@@ -18,6 +18,7 @@ export const logIn = async (req: Request, res: Response) => {
           }
 
           const isValid = bCrypt.compareSync(password, user.password)
+
           if (isValid) {
             const token = jwt.sign(user._id.toString(), JWT_SECRET)
             res.json({token})

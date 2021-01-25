@@ -10,8 +10,11 @@ export const validateAuth = (req: Request, res: Response) => {
   const isEmailValid = emailValidator(req.body.email)
   const isPassValid = passwordValidator(req.body.password)
 
-  if(!isEmailValid || !isPassValid) {
+  if(!isEmailValid) {
     res.status(400).json({message: 'Email or password incorrect!'})
+    return false
+  } else if(!isPassValid) {
+    res.status(400).json({message: 'Password is too short!'})
     return false
   } else {
     return true

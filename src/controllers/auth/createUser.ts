@@ -7,7 +7,9 @@ export const createUser = async (req: Request, res: Response) => {
   if(validateAuth(req, res)) {
     try {
       const {email, password} = req.body
-      const candidate = User.findOne({email}).exec()
+
+      // без await и
+      const candidate = await User.findOne({email}).exec()
 
       if (candidate) {
         return res.status(400).json({message: `User with email ${email} already exist!`})
