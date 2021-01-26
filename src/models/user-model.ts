@@ -5,6 +5,7 @@ export interface ITask extends Document {
   _id: mongoose.Types.ObjectId
   email: string
   password: string
+  name?: string
 }
 
 const User: Schema = new Schema(
@@ -16,6 +17,10 @@ const User: Schema = new Schema(
     password: {
       type: String,
       required: true
+    },
+    name: {
+      type: String,
+      required: false
     },
   },
 )

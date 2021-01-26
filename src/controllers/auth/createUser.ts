@@ -6,16 +6,19 @@ import {validateAuth} from '../../helpers/validateAuth';
 export const createUser = async (req: Request, res: Response) => {
   if(validateAuth(req, res)) {
     try {
-      const {email, password} = req.body
+      //const {name, email, password} = req.body
+      const email = req.body.email
+      const password = req.body.password
 
-      // без await и
-      const candidate = await User.findOne({email}).exec()
+      // без await не работает тк методы бд асинхронные
+      const candidate = await User.findOne({email})
 
       if (candidate) {
         return res.status(400).json({message: `User with email ${email} already exist!`})
       }
 
       const hashPassword = await bCrypt.hash(password, 10)
+
       const user = new User({email, password: hashPassword})
       await User.create(user)
       res.json({message: 'User was created!'})

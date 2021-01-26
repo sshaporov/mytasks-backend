@@ -20,7 +20,7 @@ export const logIn = async (req: Request, res: Response) => {
           const isValid = bCrypt.compareSync(password, user.password)
 
           if (isValid) {
-            const token = jwt.sign(user._id.toString(), JWT_SECRET)
+            const token = jwt.sign(user._id.toString(), JWT_SECRET, {expiresIn: '1h'})
             res.json({token})
           } else {
             res.status(401).json({message: 'Invalid credentials!'})
