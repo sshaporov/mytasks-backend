@@ -9,26 +9,27 @@ export const logIn = async (req: Request, res: Response) => {
   if(validateAuth(req, res)) {
     try {
       const {email, password} = req.body
+      const user = await User.findOne({email})
 
-      User.findOne({email})
-        .exec()
-        .then(user => {
-          if (!user) {
-            res.status(401).json({message: 'User not found!'})
-          }
+      if(!user) {
+        return res.status(401).json({message: 'User not found!'})
+      }
 
-          const isValid = bCrypt.compareSync(password, user.password)
+      const isPassValid = bCrypt.compareSync(password, user.password)
+      if (!isPassValid) {
+        return res.status(401).json({message: 'Invalid credentials!'})
+      }
 
-          if (isValid) {
-            const token = jwt.sign(user._id.toString(), JWT_SECRET, {expiresIn: '1h'})
-            res.json({token})
-          } else {
-            res.status(401).json({message: 'Invalid credentials!'})
-          }
-        })
-        .catch(err => {
-          res.status(500).json(err)
-        })
+      const token = jwt.sign({id: user._id}, JWT_SECRET, {expiresIn: '1h'})
+      return res.json({
+        token,
+        user: {
+          name: user.name,
+          email: user.email,
+        }
+      })
+
+
     } catch (err) {
       res.status(500).json(err)
     }

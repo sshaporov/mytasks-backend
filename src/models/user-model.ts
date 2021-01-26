@@ -1,7 +1,7 @@
 import {Schema, Document} from 'mongoose'
 import * as mongoose from 'mongoose'
 
-export interface ITask extends Document {
+export interface IUser extends Document {
   _id: mongoose.Types.ObjectId
   email: string
   password: string
@@ -25,4 +25,4 @@ const User: Schema = new Schema(
   },
 )
 
-export default mongoose.model<ITask>('Users', User)
+export default mongoose.model<IUser>('Users', User)
