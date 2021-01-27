@@ -9,6 +9,8 @@ export const createUser = async (req: Request, res: Response) => {
       //const {name, email, password} = req.body
       const email = req.body.email
       const password = req.body.password
+      let name = null
+      req.body.name && (name = req.body.name)
 
       // без await не работает тк методы бд асинхронные
       const candidate = await User.findOne({email})
@@ -19,7 +21,9 @@ export const createUser = async (req: Request, res: Response) => {
 
       const hashPassword = await bCrypt.hash(password, 10)
 
-      const user = new User({email, password: hashPassword})
+      // сделать проверку на name != null чтобы не схранять в базу name = null
+      const user = new User({email, password: hashPassword, name})
+
       await User.create(user)
       res.json({message: 'User was created!'})
 

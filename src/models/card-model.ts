@@ -4,11 +4,16 @@ import * as mongoose from 'mongoose'
 export interface ICard extends Document {
   _id: mongoose.Types.ObjectId
   title: string
+  user_id: mongoose.Types.ObjectId
 }
 
 // используем класс схемы который могус предоставляет для описания структцры данных
 // (используем класс на основе которого будет создавать объекты соотвествующие этой схеме)
 const Card: Schema = new Schema({
+    user_id: {
+      type: mongoose.Types.ObjectId,
+      required: true,
+    },
     title: {
       type: String,
       required: true,

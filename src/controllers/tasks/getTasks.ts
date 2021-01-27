@@ -5,7 +5,7 @@ export const getTasks = async (req: Request, res: Response) => {
   Task.find({card_id: req.params.cardId})
     .exec()
     .then(tasks => {
-      res.status(201).json(tasks)
+      res.status(200).json(tasks)
     })
     .catch(err => {
       res.status(500).json(err)
