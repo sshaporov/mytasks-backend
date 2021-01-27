@@ -24,6 +24,7 @@ export const logIn = async (req: Request, res: Response) => {
       return res.json({
         token,
         user: {
+          _id: user._id,
           name: user.name,
           email: user.email,
         }
