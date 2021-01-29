@@ -6,7 +6,7 @@ export const changeCardTitle = async (req: Request, res: Response) => {
   const cardId = req.params.cardId
 
   if(title === undefined) {
-    res.status(400).json({message: 'No title in the body'})
+    res.status(400).json({message: 'No card title in the body'})
   } else {
     Card.findByIdAndUpdate(cardId, {title}, {new: true})
       .exec()

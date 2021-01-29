@@ -3,7 +3,6 @@ import Card from '../../models/card-model'
 import {IUserRequest} from '../../middleware/authMiddleware'
 
 export const getCards = async (req: IUserRequest, res: Response) => {
-
   const userId = req.user.id
 
   Card.find({user_id: userId})
