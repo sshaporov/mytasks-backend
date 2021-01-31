@@ -1,7 +1,7 @@
 import {Request, Response} from 'express'
 import User from '../../models/user-model'
 import * as bCrypt from 'bCrypt'
-import {validateAuth} from '../../helpers/validateAuth';
+import {validateAuth} from '../../helpers/validateAuth'
 
 export const createUser = async (req: Request, res: Response) => {
   if(validateAuth(req, res)) {

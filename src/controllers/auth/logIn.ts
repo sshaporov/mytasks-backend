@@ -3,7 +3,7 @@ import User from '../../models/user-model'
 import * as bCrypt from 'bCrypt'
 import * as jwt from 'jsonwebtoken'
 import {JWT_SECRET} from '../../config'
-import {validateAuth} from '../../helpers/validateAuth';
+import {validateAuth} from '../../helpers/validateAuth'
 
 export const logIn = async (req: Request, res: Response) => {
   if(validateAuth(req, res)) {
