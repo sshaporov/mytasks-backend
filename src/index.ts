@@ -8,6 +8,7 @@ import {MONGO_URI, MONGOOSE_CONNECT_OPTIONS, PORT} from './config'
 import * as https from 'https'
 import * as fs from 'fs'
 
+
 const key = fs.readFileSync('./key.pem')
 const cert = fs.readFileSync('./cert.pem')
 
