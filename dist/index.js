@@ -7,12 +7,14 @@ const auth_router_1 = require("./routers/auth-router");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const config_1 = require("./config");
-const https = require("https");
-const fs = require("fs");
-const key = fs.readFileSync('./key.pem');
-const cert = fs.readFileSync('./cert.pem');
+const http = require("http");
+// import * as https from 'https'
+// import * as fs from 'fs'
+// const key = fs.readFileSync('./key.pem')
+// const cert = fs.readFileSync('./cert.pem')
 const app = express();
-const server = https.createServer({ key: key, cert: cert }, app);
+// const server = https.createServer({key: key, cert: cert }, app)
+const server = http.createServer(app);
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

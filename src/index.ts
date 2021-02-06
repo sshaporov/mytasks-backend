@@ -5,16 +5,19 @@ import auth from './routers/auth-router'
 import * as bodyParser from 'body-parser'
 import * as mongoose from 'mongoose'
 import {MONGO_URI, MONGOOSE_CONNECT_OPTIONS, PORT} from './config'
-import * as https from 'https'
-import * as fs from 'fs'
+import * as http from 'http'
+// import * as https from 'https'
+// import * as fs from 'fs'
 
 
-const key = fs.readFileSync('./key.pem')
-const cert = fs.readFileSync('./cert.pem')
+
+// const key = fs.readFileSync('./key.pem')
+// const cert = fs.readFileSync('./cert.pem')
 
 const app = express()
 
-const server = https.createServer({key: key, cert: cert }, app)
+// const server = https.createServer({key: key, cert: cert }, app)
+const server = http.createServer(app)
 
 app.use(cors())
 app.use(bodyParser.json())
