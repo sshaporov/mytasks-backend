@@ -23,9 +23,15 @@ app.use('/cards', cards)
 app.use('/auth', auth)
 
 mongoose.connect(MONGO_URI, MONGOOSE_CONNECT_OPTIONS)
-  .then(() => server.listen(PORT, () => {
-    console.log(`Server is running in https://localhost:${PORT}`)
-  }))
+  .then(() => {
+    console.log('MongoDB connected successfully')
+
+    const port = process.env.PORT || PORT;
+    server.listen(port, () => {
+      console.log(`Server is running in https://localhost:${port}`)
+    })
+
+  })
   .catch(err => {
     console.log('Mongo server error', err)
   })
