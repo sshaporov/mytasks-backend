@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import User from '../../models/user-model'
-import * as bCrypt from 'bCrypt'
+import * as bCrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
 import {JWT_SECRET} from '../../config'
 import {validateAuth} from '../../helpers/validateAuth'

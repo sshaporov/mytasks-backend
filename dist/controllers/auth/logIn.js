@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.logIn = void 0;
 const user_model_1 = require("../../models/user-model");
-const bCrypt = require("bCrypt");
+const bCrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config_1 = require("../../config");
 const validateAuth_1 = require("../../helpers/validateAuth");
