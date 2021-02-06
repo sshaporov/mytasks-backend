@@ -1,6 +1,6 @@
 import {Request, Response} from 'express'
 import User from '../../models/user-model'
-import * as bCrypt from 'bCrypt'
+import * as bCrypt from 'bcrypt'
 import {validateAuth} from '../../helpers/validateAuth'
 
 export const createUser = async (req: Request, res: Response) => {
