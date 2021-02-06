@@ -19,9 +19,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/cards', cards_router_1.default);
 app.use('/auth', auth_router_1.default);
 mongoose.connect(config_1.MONGO_URI, config_1.MONGOOSE_CONNECT_OPTIONS)
-    .then(() => server.listen(config_1.PORT, () => {
-    console.log(`Server is running in https://localhost:${config_1.PORT}`);
-}))
+    .then(() => {
+    console.log('MongoDB connected successfully');
+    const port = process.env.PORT || config_1.PORT;
+    server.listen(port, () => {
+        console.log(`Server is running in https://localhost:${port}`);
+    });
+})
     .catch(err => {
     console.log('Mongo server error', err);
 });
