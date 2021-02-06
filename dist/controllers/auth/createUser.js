@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createUser = void 0;
 const user_model_1 = require("../../models/user-model");
-const bCrypt = require("bCrypt");
+const bCrypt = require("bcrypt");
 const validateAuth_1 = require("../../helpers/validateAuth");
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (validateAuth_1.validateAuth(req, res)) {
