@@ -6,6 +6,7 @@ import * as bodyParser from 'body-parser'
 import * as mongoose from 'mongoose'
 import {MONGO_URI, MONGOOSE_CONNECT_OPTIONS, PORT} from './config'
 import * as http from 'http'
+import user from './routers/user-router'
 // import * as https from 'https'
 // import * as fs from 'fs'
 
@@ -24,6 +25,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use('/cards', cards)
 app.use('/auth', auth)
+app.use('/user', user)
 
 mongoose.connect(MONGO_URI, MONGOOSE_CONNECT_OPTIONS)
   .then(() => {

@@ -7,7 +7,7 @@ import {getTasks} from '../controllers/tasks/getTasks'
 import {addTask} from '../controllers/tasks/addTask'
 import {changeTask} from '../controllers/tasks/changeTask'
 import {removeTask} from '../controllers/tasks/removeTask'
-import {authMiddleware} from '../middleware/authMiddleware';
+import {authMiddleware} from '../middleware/authMiddleware'
 
 const cards = express.Router()
 

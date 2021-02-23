@@ -1,6 +1,6 @@
 import * as express from 'express'
 import {logIn} from '../controllers/auth/logIn'
-import {createUser} from '../controllers/auth/createUser'
+import {createUser} from '../controllers/user/createUser'
 import {authMiddleware} from '../middleware/authMiddleware'
 import {getMe} from '../controllers/auth/getMe'
 
