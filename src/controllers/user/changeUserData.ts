@@ -14,7 +14,7 @@ export const changeUserData = async (req: IUserRequest, res: Response) => {
   } else {
 
     validateEmailAccessibility(email).then(valid => {
-      if (!valid) {
+      if (valid) {
         User.findByIdAndUpdate(userId, {name, email}, {new: true})
           .exec()
           .then(updatedUser => {
